@@ -59,7 +59,7 @@ struct ResolvedEntity {
 
 
     func model() -> Model {
-        return ClassModel(identifier: key,
+        return ClassModel(identifier: entity.metadata?.nameOverride ?? key,
                           acl: entity.entityNode.accessLevel,
                           declType: entity.entityNode.declType,
                           attributes: attributes,
@@ -117,8 +117,9 @@ public enum CombineType {
 }
 
 /// Contains arguments to annotation
-/// e.g. @mockable(module: prefix = Foo; typealias: T = Any; U = String; rx: barStream = PublishSubject; history: bazFunc = true; modifiers: someVar = weak; combine: fooPublisher = CurrentValueSubject; otherPublisher = @Published otherProperty)
+/// e.g. @mockable(module: prefix = Foo; typealias: T = Any; U = String; rx: barStream = PublishSubject; history: bazFunc = true; modifiers: someVar = weak; combine: fooPublisher = CurrentValueSubject; otherPublisher = @Published otherProperty, override: name = Foo)
 struct AnnotationMetadata {
+    var nameOverride: String?
     var module: String?
     var typeAliases: [String: String]?
     var varTypes: [String: String]?

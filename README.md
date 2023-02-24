@@ -387,6 +387,24 @@ public class FooMock: Foo {
 }
 ```
 
+### Overrides
+
+To override the generated mock name:
+
+```swift
+/// @mockable(override: name = Foo)
+public protocol FooProtocol {
+    // ...
+}
+```
+
+This will generate:
+```swift
+public class FooMock {
+    // ...
+}
+```
+
 ## Used libraries
 
 [SwiftSyntax](https://github.com/apple/swift-syntax) |
